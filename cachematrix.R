@@ -1,7 +1,6 @@
 
 # This program (cachematrix.R) has two functions, makeCacheMatrix and CacheSolve.
-# The program is used to compute and display the inverse of the square matrix.
-# The data input to the program is a square matrix.
+# The program is used to compute and display the inverse of a square matrix.
 # If the inverse of that matrix has already been computed, the result is taken from the cached value and displayed.
 # Else the inverse is calculated,cached and displayed.
 
@@ -26,9 +25,8 @@ makeCacheMatrix <- function(x = numeric()) {
     }
 ## cacheSolve function calculates the inverse of the matrix created with the makeCacheMatrix function.
 ## The function first checks to see if the inverse has already been calculated. 
-##  If yes, it gets the innverse from the cache and skips the computation.
-## Else,it calculates the inverse of the data.
-## It uses the setinv function to set the value of the inverse in the cache.
+##  If yes, it gets the inverse from the cache and skips the computation.
+## Else,it calculates the inverse of the data and sets the value of the inverse in the cache.
 
 cacheSolve <- function(x, ...) {
     minv <- x$getinverse()             # attempts to get the inverse from x.
@@ -36,9 +34,9 @@ cacheSolve <- function(x, ...) {
         message("getting cached data")
         return(minv)
         }
-    data <- x$get()                    # since there is no cached value, get matrix(x) from makeCacheMatrix.
-    minv <- solve(data, ...)           # calculate inverse of data.
-    x$setinverse(minv)                 # cache minv using setinv function of makeCacheMatrix.
+    data <- x$get()                    # since there is no cached value,get matrix from makeCacheMatrix.
+    minv <- solve(data, ...)           # calculate inverse of the matrix data.
+    x$setinverse(minv)                 # cache minv using setinverse function of makeCacheMatrix.
     minv                               # returns inverse of the matrix.
     }
 
